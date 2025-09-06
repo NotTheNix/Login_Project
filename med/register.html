@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><title>Register</title>
+  <style>
+    body{display:flex;height:100vh;justify-content:center;align-items:center;background:#f5f5f5;font-family:system-ui,Arial;}
+    .box{width:360px;background:#fff;padding:32px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);text-align:center;}
+    .input{width:100%;padding:10px;margin-bottom:12px;border:1px solid #ccc;border-radius:4px;font-size:16px;}
+    .btn{width:100%;padding:12px;background:#0d6efd;color:#fff;border:none;border-radius:4px;font-size:17px;cursor:pointer;}
+    .msg{display:none;margin-top:10px;padding:10px;border-radius:6px;font-size:14px;text-align:left}
+    .ok{display:block;background:#e8f9ee;border:1px solid #50b873;color:#1f6a3b;}
+    .err{display:block;background:#ffe8ea;border:1px solid #d24b5a;color:#8a2430;}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Create Account</h2>
+    <input id="name" class="input" type="text" placeholder="Full Name" required>
+    <input id="email" class="input" type="email" placeholder="Email" required>
+    <input id="password" class="input" type="password" placeholder="Password (min 6 chars)" minlength="6" required>
+    <input id="confirm" class="input" type="password" placeholder="Confirm Password" minlength="6" required>
+    <button id="register" class="btn">Create Account</button>
+    <div id="msg" class="msg"></div>
+    <p style="margin-top:12px">Already have an account? <a href="login.html">Back to Login</a> | <a href="main.html">Home</a></p>
+  </div>
+
+  <script>
+    const msg=document.getElementById("msg");
+    const show=(ok,t)=>{msg.textContent=t;msg.className="msg "+(ok?"ok":"err");};
+    const postJSON=async(url,data)=>{
+      const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+      try{return await r.json();}catch{return {ok:false,msg:"Server error"}}};
+
+    document.getElementById("register").addEventListener("click", async () => {
+      msg.className="msg"; msg.textContent="";
+      const name=document.getElementById("name").value.trim();
+      const email=document.getElementById("email").value.trim();
+      const pass=document.getElementById("password").value;
+      const conf=document.getElementById("confirm").value;
+
+      if(!name||!email||!pass||!conf) return show(false,"Fill all fields.");
+      if(pass.length<6) return show(false,"Password must be at least 6 characters.");
+      if(pass!==conf) return show(false,"Passwords do not match.");
+
+      const res=await postJSON("/register",{name,email,password:pass});
+      if(!res.ok) return show(false,res.msg||"Registration failed.");
+
+      // ✅ success → go back to main.html
+      window.location.href = "main.html";
+    });
+  </script>
+</body>
+</html>
