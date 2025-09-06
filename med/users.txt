@@ -1,2 +1,3 @@
 ali@gmail.com,Ali Amr,$2b$10$y0Cx2l.tVnoxQV1dAui6Q.GrycUlLUVhywtr/Yvxh8jCM3YRbEDk2
 yas@gmail.com,yasso,$2b$10$BxXjrO.9zqVqekgqYyKpwOLW3tlLHlchYTP4zUXnzgfVtJqTJcIwW
+hamed@gmail.com,hamed,$2b$10$Ytkrt0A71Bhwr4Y4/GjU4e9UV1hiaw.hN1J2jJzDSsjcd7SBiqm.y

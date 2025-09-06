@@ -76,8 +76,7 @@ app.post("/login", async (req, res) => {
 
     const ok = await bcrypt.compare(password, entry.hash);
     if (!ok) return res.status(401).json({ ok:false, msg:"Wrong credentials: incorrect password." });
-
-    return res.json({ ok:true, msg:`Welcome, ${entry.name}!` });
+    return res.json({ ok:true, msg:"Login successful", name: entry.name });
   } catch (e) {
     console.error("LOGIN ERROR:", e);
     return res.status(500).json({ ok:false, msg:"Server error." });
