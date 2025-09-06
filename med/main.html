@@ -37,14 +37,24 @@
         .register-link:hover {
             text-decoration: underline;
         }
+        .fade-out {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
     </style>
 </head>
-    <div class="container">
-        <a href="../login/login.html">
-            <button class="login-btn">Login</button>
-        </a>
+<body>
+    <div class="container" id="mainContainer">
+        <button class="login-btn" id="loginBtn">Login</button>
         <br>
         <a href="#" class="register-link">Register</a>
     </div>
+    <script>
+        document.getElementById('loginBtn').onclick = function() {
+            document.getElementById('mainContainer').classList.add('fade-out');
+            setTimeout(function() {
+                window.location.href = './MED/Login/login.html';
+            }, 500);
+        };
+    </script>
 </body>
-</html>
