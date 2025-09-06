@@ -47,18 +47,23 @@
     <div class="container" id="mainContainer">
         <button class="login-btn" id="loginBtn">Login</button>
         <br>
-        <a href="#" class="register-link">Register</a>
-    </div>
-    <script>
-        document.getElementById('loginBtn').onclick = function() {
-            document.getElementById('mainContainer').classList.add('fade-out');
-            setTimeout(function() {
-<<<<<<< HEAD
-                window.location.href = './login/login.html';
-=======
-                window.location.href = '../MED/Login/login.html';
->>>>>>> 2737ea2318bc479f9a021fdb739b41fadff5a863
-            }, 500);
-        };
-    </script>
+
+<a href="#" class="register-link" id="registerLink">Register</a>
+
+<script>
+    document.getElementById('loginBtn').onclick = function() {
+        document.getElementById('mainContainer').classList.add('fade-out');
+        setTimeout(function() {
+            window.location.href = './login/login.html'
+        }, 500);
+    };
+    document.getElementById('registerLink').onclick = function(e) {
+        e.preventDefault();
+        document.getElementById('mainContainer').classList.add('fade-out');
+        setTimeout(function() {
+            window.location.href = './regestier/restier.html';
+        }, 500);
+    };
+</script>
+
 </body>
